@@ -10,6 +10,9 @@ class Board:
     """
 
     def __init__(self):
+        """
+        creates a board with 9 rows and 9 columns with all values set to 0
+        """
         self.contents = []
         for i in range(9):
             self.contents.append([])
@@ -17,10 +20,16 @@ class Board:
                 self.contents[len(self.contents) - 1].append(0)
 
     def __str__(self):
+        """
+        returns the string representation of the board
+        :return:
+        :rtype:
+        """
+
         string = ""
-        for x in self.contents:
+        for row in self.contents:
             z = 0
-            for i in x:
+            for i in row:
                 if z != 8:
                     string = string + " " + str(i)
                 else:
