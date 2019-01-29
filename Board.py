@@ -1,4 +1,10 @@
+"""
+class for the sudoku board
+"""
+
+
 class Board:
+
     """
     An object to work as a sudoku board
     """
@@ -23,33 +29,6 @@ class Board:
                 z += 1
 
         return string
-
-
-    def tile(self, row, col):
-        """
-        return the number at a certain position
-        :param row:
-        :type row:
-        :param col:
-        :type col:
-        :return:
-        :rtype:
-        """
-        return self.contents[row][col]
-
-    def set(self, row, col, value):
-        """
-        sets the vale of a tile
-        :param row:
-        :type row:
-        :param col:
-        :type col:
-        :param value:
-        :type value:
-        :return:
-        :rtype:
-        """
-        self.contents[row][col] = value
 
 
 
