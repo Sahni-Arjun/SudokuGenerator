@@ -11,16 +11,16 @@ class Actual:
     """
 
     def __init__(self):
+        """
+        initiates the object with a blank board and a boolean
+        """
         self.found = False
         self.board = Board()
 
-    def get_correct(self, node: SudokuTreeNode):
+    def get_correct(self, node: SudokuTreeNode) -> None:
         """
-        gives a correct value to a piece on a sudoku board
-        :param node:
-        :type node:
-        :return:
-        :rtype:
+        Adds a suitable value to the current tile, then calls itself to do the same for possible values
+        on the next tile if the board is not complete. If the board is complete it does nothing.
         """
         if not self.found:
             self.board.contents[node.row][node.col] = node.value
@@ -33,11 +33,10 @@ class Actual:
                 for x in node.children:
                     self.get_correct(x)
 
-    def create(self):
+    def create(self) -> None:
         """
-        creates a random solved sudoku board
-        :return:
-        :rtype:
+        calls get_correct with the correct values
+
         """
         number = random.randint(1, 9)
         node = SudokuTreeNode(number, 0, 0, self.board, 0)
