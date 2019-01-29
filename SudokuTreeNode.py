@@ -1,11 +1,14 @@
+"""
+SudokuTreeNode is created
+"""
 from Board import *
 
 
-class SudokuTree:
+class SudokuTreeNode:
     """
     a tree class to work with the sudoku board
     """
-    def __init__(self, value: int, row: int, col: int, board: Board, length=0):
+    def __init__(self, value: int, row: int, col: int, board: Board, length):
         """
         initializes a node for a sudoku tree
         """
@@ -30,7 +33,7 @@ class SudokuTree:
         """
         row_stuff = []
         for i in range(self.ncol):
-            row_stuff.append(self.board.tile(self.nrow, i))
+            row_stuff.append(self.board.get_tile(self.nrow, i))
 
         return row_stuff
 
@@ -42,7 +45,7 @@ class SudokuTree:
         """
         col_stuff = []
         for i in range(self.nrow):
-            col_stuff.append(self.board.tile(i, self.ncol))
+            col_stuff.append(self.board.get_tile(i, self.ncol))
 
         return col_stuff
 
@@ -60,7 +63,7 @@ class SudokuTree:
         for i in range(row3 * 3, (row3 * 3) + 3):
             for j in range(col3 * 3, (col3 * 3) + 3):
                 if (9*i + j) < (9 * self.nrow + self.ncol):
-                    square_stuff.append(self.board.tile(i, j))
+                    square_stuff.append(self.board.get_tile(i, j))
 
         return square_stuff
 
@@ -100,7 +103,7 @@ class SudokuTree:
         """
         children = []
         for x in self.get_available():
-            node = SudokuTree(x, self.nrow, self.ncol, self.board, self.length + 1)
+            node = SudokuTreeNode(x, self.nrow, self.ncol, self.board, self.length + 1)
             children.append(node)
 
         self.children = children
