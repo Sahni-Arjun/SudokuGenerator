@@ -1,5 +1,7 @@
-
-from SudokuTree import *
+"""
+class Actual is created
+"""
+from SudokuTreeNode import *
 import random
 
 
@@ -21,7 +23,7 @@ class Actual:
         :rtype:
         """
         if not self.found:
-            self.board.set_tile(node.row, node.col, node.value)
+            self.board.contents[node.row][node.col] = node.value
             node.board = self.board
             node.get_children()
             random.shuffle(node.children)
