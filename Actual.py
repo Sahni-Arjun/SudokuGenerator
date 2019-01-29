@@ -1,15 +1,18 @@
-from Board import *
+
 from SudokuTree import *
 import random
 
 
 class Actual:
+    """
+    This is the class that creates the tiles on the sudoku board
+    """
 
     def __init__(self):
         self.found = False
         self.board = Board()
 
-    def get_correct(self, node: SudokuTree):
+    def get_correct(self, node: SudokuTreeNode):
         """
         gives a correct value to a piece on a sudoku board
         :param node:
@@ -18,9 +21,10 @@ class Actual:
         :rtype:
         """
         if not self.found:
-            self.board.set(node.row, node.col, node.value)
+            self.board.set_tile(node.row, node.col, node.value)
             node.board = self.board
             node.get_children()
+            random.shuffle(node.children)
             if node.length == 80:
                 self.found = True
             else:
@@ -34,7 +38,7 @@ class Actual:
         :rtype:
         """
         number = random.randint(1, 9)
-        node = SudokuTree(number, 0, 0, self.board, 0)
+        node = SudokuTreeNode(number, 0, 0, self.board, 0)
         self.get_correct(node)
 
 
