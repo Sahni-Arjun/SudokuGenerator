@@ -33,7 +33,7 @@ class SudokuTreeNode:
         """
         row_stuff = []
         for i in range(self.ncol):
-            row_stuff.append(self.board.get_tile(self.nrow, i))
+            row_stuff.append(self.board.contents[self.nrow][i])
 
         return row_stuff
 
@@ -45,7 +45,7 @@ class SudokuTreeNode:
         """
         col_stuff = []
         for i in range(self.nrow):
-            col_stuff.append(self.board.get_tile(i, self.ncol))
+            col_stuff.append(self.board.contents[i][self.ncol])
 
         return col_stuff
 
@@ -63,7 +63,7 @@ class SudokuTreeNode:
         for i in range(row3 * 3, (row3 * 3) + 3):
             for j in range(col3 * 3, (col3 * 3) + 3):
                 if (9*i + j) < (9 * self.nrow + self.ncol):
-                    square_stuff.append(self.board.get_tile(i, j))
+                    square_stuff.append(self.board.contents[i][j])
 
         return square_stuff
 
