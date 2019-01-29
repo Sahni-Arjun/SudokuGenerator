@@ -8,7 +8,7 @@ class SudokuTreeNode:
     """
     a tree class to work with the sudoku board
     """
-    def __init__(self, value: int, row: int, col: int, board: Board, length):
+    def __init__(self, value: int, row: int, col: int, board: Board, length: int):
         """
         initializes a node for a sudoku tree
         """
@@ -25,11 +25,10 @@ class SudokuTreeNode:
             self.nrow = self.row
             self.ncol = self.col + 1
 
-    def get_row(self):
+    def get_row(self) -> list:
         """
-        gives the numbers that are already in the row
-        :return: list of integers
-        :rtype: list
+        gives the numbers that are already in the row before the current node
+
         """
         row_stuff = []
         for i in range(self.ncol):
@@ -37,11 +36,10 @@ class SudokuTreeNode:
 
         return row_stuff
 
-    def get_col(self):
+    def get_col(self) -> list:
         """
-        gives the numbers that are already in the column
-        :return: list of integers
-        :rtype: list
+        gives the numbers that are already in the column above the current node
+
         """
         col_stuff = []
         for i in range(self.nrow):
@@ -49,11 +47,10 @@ class SudokuTreeNode:
 
         return col_stuff
 
-    def get_square(self):
+    def get_square(self) -> list:
         """
-        get the numbers already in the 3x3 subsquare
-        :return:
-        :rtype:
+        get the numbers already in the 3x3 subsquare that come before the node in row-major order.
+
         """
 
         square_stuff = []
@@ -67,22 +64,20 @@ class SudokuTreeNode:
 
         return square_stuff
 
-    def get_all(self):
+    def get_all(self) -> list:
         """
-        return all the numbers a tile cannot be
-        :return:
-        :rtype:
+        return all the numbers the next tile tile cannot be
+
         """
         total = self.get_col()
         total.extend(self.get_row())
         total.extend(self.get_square())
         return total
 
-    def get_available(self):
+    def get_available(self) -> list:
         """
         returns a list of integers which can occupy the next position on the sudoku board according to sudoku rules
-        :return:
-        :rtype:
+
         """
 
         total = self.get_all()
@@ -95,11 +90,9 @@ class SudokuTreeNode:
 
         return available
 
-    def get_children(self):
+    def get_children(self) -> None:
         """
-        gives the children of the node(these correspond to valid nodes that relate to the next position in the board
-        :return:
-        :rtype:
+        fills the class attribute children with integer values that can be placed in the next tile
         """
         children = []
         for x in self.get_available():
